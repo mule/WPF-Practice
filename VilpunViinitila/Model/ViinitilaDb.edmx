@@ -12,7 +12,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="WineName" Type="nvarchar" Nullable="false" />
     <Property Name="Country" Type="nvarchar" Nullable="false" />
     <Property Name="Grape" Type="nvarchar" Nullable="false" />
@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Type="String" Name="WineName" Nullable="false" />
           <Property Type="String" Name="Country" Nullable="false" />
           <Property Type="String" Name="Grape" Nullable="false" />

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 08/23/2011 22:04:33
+-- Date Created: 08/24/2011 20:06:17
 -- Generated from EDMX file: C:\Users\Jukka\Documents\Visual Studio 2010\Projects\VilpunViinitila\VilpunViinitila\Model\ViinitilaDb.edmx
 -- --------------------------------------------------
 
@@ -18,6 +18,8 @@
 -- NOTE: if the table does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
+    DROP TABLE [WineSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -25,7 +27,7 @@
 
 -- Creating table 'WineSet'
 CREATE TABLE [WineSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] uniqueidentifier  NOT NULL,
     [WineName] nvarchar(4000)  NOT NULL,
     [Country] nvarchar(4000)  NOT NULL,
     [Grape] nvarchar(4000)  NOT NULL,

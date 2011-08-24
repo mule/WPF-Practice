@@ -120,7 +120,7 @@ namespace VilpunViinitila.Model
         /// <param name="region">Initial value of the Region property.</param>
         /// <param name="sortiment">Initial value of the Sortiment property.</param>
         /// <param name="price">Initial value of the Price property.</param>
-        public static Wine CreateWine(global::System.Int32 id, global::System.String wineName, global::System.String country, global::System.String grape, global::System.String region, global::System.String sortiment, global::System.Double price)
+        public static Wine CreateWine(global::System.Guid id, global::System.String wineName, global::System.String country, global::System.String grape, global::System.String region, global::System.String sortiment, global::System.Double price)
         {
             Wine wine = new Wine();
             wine.Id = id;
@@ -141,7 +141,7 @@ namespace VilpunViinitila.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.Guid Id
         {
             get
             {
@@ -159,8 +159,8 @@ namespace VilpunViinitila.Model
                 }
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
         partial void OnIdChanged();
     
         /// <summary>

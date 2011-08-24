@@ -21,19 +21,40 @@ namespace VilpunViinitila
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainFormViewModel _vm;
+
         public MainWindow()
         {
             InitializeComponent();
-            _vm = new MainFormViewModel();
-            _vm.LoadData();
+
 
         }
 
         private void btnAddWine_Click(object sender, RoutedEventArgs e)
         {
-     
-            _vm.AddSelectedWine();
+            var winevm = pnlWineDataFields.DataContext as WineViewModel;
+
+
+            if (winevm != null)
+            {
+                using (var db = new ViinitilaDbContainer())
+                {
+                    var wine = new Wine()
+                                   {
+                                       Id = Guid.NewGuid(),
+                                       WineName = winevm.Name,
+                                       Country = winevm.Country,
+                                       Grape = winevm.Grape,
+                                       Region = winevm.Region,
+                                       Sortiment = winevm.Sortiment,
+                                       Price = winevm.Price
+                                   };
+
+                    db.WineSet.AddObject(wine);
+                    db.SaveChanges();
+                }
+            }
+
+
 
 
         }
