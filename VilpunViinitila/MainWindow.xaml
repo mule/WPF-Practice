@@ -72,13 +72,17 @@
                 </TextBox>
 
             </Grid>
-            <StackPanel Name="pnlWineFormControls" Orientation="Horizontal">
+            <StackPanel Name="pnlAddWineControls" Orientation="Horizontal">
                 <Button Name="btnAddWine" Content="Add Wine" Click="btnAddWine_Click" />
-                <Button Name="btnSaveWine" Content="Save changes" />
-                <Button Name="btnDeleteWine" Content="Remove Wine" />
-                
+                <Button Name="btnCancelAddWine" Content="Cancel" />
+                          
             </StackPanel>
-        </StackPanel>
+      <StackPanel Name="pnlEditWineControls" Orientation="Horizontal">
+        <Button Name="btnSaveWine" Content="Save changes" Click="btnSaveWine_Click" />
+        <Button Name="btnDeleteWine" Content="Remove Wine" Click="btnDeleteWine_Click" />
+        <Button Name="btnCancelEditWine" Content="Cancel" />
+      </StackPanel>
+    </StackPanel>
         <StackPanel Height="386" HorizontalAlignment="Left"  Name="pnlWinesView" VerticalAlignment="Top" Width="323" Margin="10,0,0,0" Initialized="pnlWinesView_Initialized">
       <!--<StackPanel.Resources>
         <vm:WineListViewModel x:Key="WineListVM"/>        
@@ -87,14 +91,20 @@
         <Binding Source="{StaticResource WineListVM}"></Binding>
       </StackPanel.DataContext>-->
         <DataGrid AutoGenerateColumns="False" Height="200" Name="grdWineList" ItemsSource="{Binding Path=WineList}">
-        <DataGrid.Columns>
+        <DataGrid.Resources>
+          <Style TargetType="DataGridRow">
+            <EventSetter Event="Selected" Handler="WineListRowSelected"></EventSetter>
+          </Style> 
+          
+        </DataGrid.Resources>
+          <DataGrid.Columns>
          
-          <DataGridTextColumn Binding="{Binding Path=WineName}" Header="WineName" />
-          <DataGridTextColumn Binding="{Binding Path=Country}" Header="Country" />
-          <DataGridTextColumn Binding="{Binding Path=Grape}" Header="Grape" />
-          <DataGridTextColumn Binding="{Binding Path=Region}" Header="Region" />
-          <DataGridTextColumn Binding="{Binding Path=Sortiment}" Header="Sortiment" />
-          <DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" />
+          <DataGridTextColumn Binding="{Binding Path=WineName}" Header="WineName" IsReadOnly="True" />
+          <DataGridTextColumn Binding="{Binding Path=Country}" Header="Country" IsReadOnly="True" />
+          <DataGridTextColumn Binding="{Binding Path=Grape}" Header="Grape" IsReadOnly="True" />
+          <DataGridTextColumn Binding="{Binding Path=Region}" Header="Region" IsReadOnly="True" />
+          <DataGridTextColumn Binding="{Binding Path=Sortiment}" Header="Sortiment" IsReadOnly="True" />
+          <DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" IsReadOnly="True" />
         </DataGrid.Columns>
       </DataGrid>
     </StackPanel>
