@@ -79,9 +79,25 @@
                 
             </StackPanel>
         </StackPanel>
-        <StackPanel Height="386" HorizontalAlignment="Left"  Name="pnlWinesView" VerticalAlignment="Top" Width="241" Margin="10,0,0,0">
-            <DataGrid AutoGenerateColumns="False" Height="200" Name="dataGrid1" Width="200"  />
-        </StackPanel>
+        <StackPanel Height="386" HorizontalAlignment="Left"  Name="pnlWinesView" VerticalAlignment="Top" Width="323" Margin="10,0,0,0" Initialized="pnlWinesView_Initialized">
+      <!--<StackPanel.Resources>
+        <vm:WineListViewModel x:Key="WineListVM"/>        
+      </StackPanel.Resources>
+      <StackPanel.DataContext>
+        <Binding Source="{StaticResource WineListVM}"></Binding>
+      </StackPanel.DataContext>-->
+        <DataGrid AutoGenerateColumns="False" Height="200" Name="grdWineList" ItemsSource="{Binding Path=WineList}">
+        <DataGrid.Columns>
+         
+          <DataGridTextColumn Binding="{Binding Path=WineName}" Header="WineName" />
+          <DataGridTextColumn Binding="{Binding Path=Country}" Header="Country" />
+          <DataGridTextColumn Binding="{Binding Path=Grape}" Header="Grape" />
+          <DataGridTextColumn Binding="{Binding Path=Region}" Header="Region" />
+          <DataGridTextColumn Binding="{Binding Path=Sortiment}" Header="Sortiment" />
+          <DataGridTextColumn Binding="{Binding Path=Price}" Header="Price" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </StackPanel>
         <StackPanel Height="386" HorizontalAlignment="Left"  Name="pnlWineYardView" VerticalAlignment="Top" Width="458">
             <DataGrid AutoGenerateColumns="False" Height="200" Name="dataGrid2" Width="200" />
         </StackPanel>

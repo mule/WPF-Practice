@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -21,11 +22,13 @@ namespace VilpunViinitila
     /// </summary>
     public partial class MainWindow : Window
     {
-
+      protected ViinitilaDbContainer _db;
         public MainWindow()
         {
-            InitializeComponent();
 
+          _db = new ViinitilaDbContainer();
+            InitializeComponent();
+         
 
         }
 
@@ -36,8 +39,7 @@ namespace VilpunViinitila
 
             if (winevm != null)
             {
-                using (var db = new ViinitilaDbContainer())
-                {
+  
                     var wine = new Wine()
                                    {
                                        Id = Guid.NewGuid(),
@@ -49,11 +51,25 @@ namespace VilpunViinitila
                                        Price = winevm.Price
                                    };
 
-                    db.WineSet.AddObject(wine);
-                    db.SaveChanges();
-                }
+                    _db.WineSet.AddObject(wine);
+                    _db.SaveChanges();
+                
             }
 
+
+
+
+        }
+
+        private void pnlWinesView_Initialized(object sender, EventArgs e)
+        {
+
+
+          var wineListVM = new WineListViewModel();
+
+            wineListVM.WineList = new ObservableCollection<Wine>(_db.WineSet);
+
+          grdWineList.DataContext = wineListVM;
 
 
 
