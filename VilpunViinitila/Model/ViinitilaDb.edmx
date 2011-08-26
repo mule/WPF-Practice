@@ -16,8 +16,8 @@
     <Property Name="WineName" Type="nvarchar" Nullable="false" />
     <Property Name="Country" Type="nvarchar" Nullable="false" />
     <Property Name="Grape" Type="nvarchar" Nullable="false" />
-    <Property Name="Region" Type="nvarchar" Nullable="false" />
-    <Property Name="Sortiment" Type="nvarchar" Nullable="false" />
+    <Property Name="Region" Type="nvarchar" Nullable="true" />
+    <Property Name="Sortiment" Type="nvarchar" Nullable="true" />
     <Property Name="Price" Type="float" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
@@ -35,8 +35,8 @@
           <Property Type="String" Name="WineName" Nullable="false" />
           <Property Type="String" Name="Country" Nullable="false" />
           <Property Type="String" Name="Grape" Nullable="false" />
-          <Property Type="String" Name="Region" Nullable="false" />
-          <Property Type="String" Name="Sortiment" Nullable="false" />
+          <Property Type="String" Name="Region" Nullable="true" />
+          <Property Type="String" Name="Sortiment" Nullable="true" />
           <Property Type="Double" Name="Price" Nullable="false" />
         </EntityType>
       </Schema>

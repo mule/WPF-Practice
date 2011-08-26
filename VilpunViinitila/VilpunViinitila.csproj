@@ -58,9 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\MainFormViewModel.cs" />
+    <Compile Include="RequiredTextValidationRule.cs" />
     <Compile Include="ViewModel\WineListViewModel.cs" />
+    <Compile Include="ViewModel\WinesByCountryViewModel.cs" />
+    <Compile Include="ViewModel\WinesByGrapesViewModel.cs" />
     <Compile Include="ViewModel\WineViewModel.cs" />
+    <Compile Include="ViewModel\VineYardValueViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

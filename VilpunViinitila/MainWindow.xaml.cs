@@ -27,6 +27,8 @@ namespace VilpunViinitila {
       _db = new ViinitilaDbContainer();
       InitializeComponent();
       pnlEditWineControls.Visibility = Visibility.Collapsed;
+      refreshValueStats();
+      refreshCountryStats();
 
 
     }
@@ -55,6 +57,8 @@ namespace VilpunViinitila {
 
 
       refreshWineList();
+      refreshValueStats();
+      refreshCountryStats();
       pnlWineDataFields.DataContext = new WineViewModel();
 
 
@@ -102,6 +106,70 @@ namespace VilpunViinitila {
       }
     }
 
+    private void refreshValueStats()
+    {
+      if (_db.WineSet.Count() != 0)
+      {
+        var totalValue = _db.WineSet.Sum(w => w.Price);
+        var wineCount = _db.WineSet.Count();
+
+        pnlValueStats.DataContext = new VineYardValueViewModel() {TotalValue = totalValue, WineCount = wineCount};
+      }
+      else
+      {
+        pnlValueStats.DataContext = new VineYardValueViewModel() {TotalValue = 0, WineCount = 0};
+      }
+
+
+
+
+
+    }
+
+
+    private void refreshCountryStats()
+    {
+
+      if (_db.WineSet.Count() != 0)
+      {
+
+
+        var winesByCountry = from wine in _db.WineSet
+                             group wine by wine.Country
+                             into g
+                             where g.Count() > 0
+                             select new WineByCountryViewModel() {Country = g.Key, WineCount = g.Count()};
+
+
+
+
+
+        grdWinesByCountry.Columns.Clear();
+
+
+        foreach (var country in winesByCountry)
+        {
+          grdWinesByCountry.Columns.Add(new DataGridTextColumn()
+                                          {Header = country.Country, Binding = new Binding("WineCount")});
+
+        }
+
+        grdWinesByCountry.ItemsSource = new List<WineByCountryViewModel>() {winesByCountry.FirstOrDefault()};
+
+        lblWinesByCountry.Visibility = Visibility.Visible;
+        grdWinesByCountry.Visibility = Visibility.Visible;
+      }
+      else
+      {
+        lblWinesByCountry.Visibility = Visibility.Collapsed;
+        grdWinesByCountry.Visibility = Visibility.Collapsed;
+      }
+
+    }
+
+
+  
+
     private void refreshWineList()
     {
 
@@ -132,6 +200,8 @@ namespace VilpunViinitila {
         pnlAddWineControls.Visibility = Visibility.Visible;
         
         refreshWineList();
+        refreshValueStats();
+        refreshCountryStats();
 
       }
 
@@ -140,6 +210,8 @@ namespace VilpunViinitila {
     }
 
     private void btnSaveWine_Click(object sender, RoutedEventArgs e) {
+
+      
       var winevm = pnlWineDataFields.DataContext as WineViewModel;
 
       if (winevm != null)
@@ -161,6 +233,30 @@ namespace VilpunViinitila {
         refreshWineList();
 
       }
+    }
+
+    private void btnCancelAddWine_Click(object sender, RoutedEventArgs e)
+    {
+      pnlWineDataFields.DataContext = new WineViewModel();
+
+
+    }
+
+    private void btnCancelEditWine_Click(object sender, RoutedEventArgs e) {
+      pnlEditWineControls.Visibility = Visibility.Collapsed;
+      pnlAddWineControls.Visibility = Visibility.Visible;
+      pnlWineDataFields.DataContext = new WineViewModel();
+
+      grdWineList.SelectedItem = null;
+
+
+
+
+
+
+
+
+
     }
   }
 }

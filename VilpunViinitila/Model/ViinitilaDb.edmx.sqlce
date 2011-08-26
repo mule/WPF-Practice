@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 08/24/2011 20:06:17
--- Generated from EDMX file: C:\Users\Jukka\Documents\Visual Studio 2010\Projects\VilpunViinitila\VilpunViinitila\Model\ViinitilaDb.edmx
+-- Date Created: 08/26/2011 16:42:31
+-- Generated from EDMX file: C:\gitRepositories\WPF-Practice\VilpunViinitila\Model\ViinitilaDb.edmx
 -- --------------------------------------------------
 
 
@@ -31,8 +31,8 @@ CREATE TABLE [WineSet] (
     [WineName] nvarchar(4000)  NOT NULL,
     [Country] nvarchar(4000)  NOT NULL,
     [Grape] nvarchar(4000)  NOT NULL,
-    [Region] nvarchar(4000)  NOT NULL,
-    [Sortiment] nvarchar(4000)  NOT NULL,
+    [Region] nvarchar(4000)  NULL,
+    [Sortiment] nvarchar(4000)  NULL,
     [Price] float  NOT NULL
 );
 GO

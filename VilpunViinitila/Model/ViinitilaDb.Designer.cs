@@ -117,18 +117,14 @@ namespace VilpunViinitila.Model
         /// <param name="wineName">Initial value of the WineName property.</param>
         /// <param name="country">Initial value of the Country property.</param>
         /// <param name="grape">Initial value of the Grape property.</param>
-        /// <param name="region">Initial value of the Region property.</param>
-        /// <param name="sortiment">Initial value of the Sortiment property.</param>
         /// <param name="price">Initial value of the Price property.</param>
-        public static Wine CreateWine(global::System.Guid id, global::System.String wineName, global::System.String country, global::System.String grape, global::System.String region, global::System.String sortiment, global::System.Double price)
+        public static Wine CreateWine(global::System.Guid id, global::System.String wineName, global::System.String country, global::System.String grape, global::System.Double price)
         {
             Wine wine = new Wine();
             wine.Id = id;
             wine.WineName = wineName;
             wine.Country = country;
             wine.Grape = grape;
-            wine.Region = region;
-            wine.Sortiment = sortiment;
             wine.Price = price;
             return wine;
         }
@@ -238,7 +234,7 @@ namespace VilpunViinitila.Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Region
         {
@@ -250,7 +246,7 @@ namespace VilpunViinitila.Model
             {
                 OnRegionChanging(value);
                 ReportPropertyChanging("Region");
-                _Region = StructuralObject.SetValidValue(value, false);
+                _Region = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Region");
                 OnRegionChanged();
             }
@@ -262,7 +258,7 @@ namespace VilpunViinitila.Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Sortiment
         {
@@ -274,7 +270,7 @@ namespace VilpunViinitila.Model
             {
                 OnSortimentChanging(value);
                 ReportPropertyChanging("Sortiment");
-                _Sortiment = StructuralObject.SetValidValue(value, false);
+                _Sortiment = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Sortiment");
                 OnSortimentChanged();
             }
